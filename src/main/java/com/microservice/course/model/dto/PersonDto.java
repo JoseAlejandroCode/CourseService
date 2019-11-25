@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-abstract class PersonDto implements Serializable {
+public class PersonDto implements Serializable {
   private String id;
 
   @ApiModelProperty(value = "Fullname", required = true)
