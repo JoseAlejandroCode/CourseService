@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PersonDto implements Serializable {
+abstract class PersonDto implements Serializable {
   private String id;
 
   @ApiModelProperty(value = "Fullname", required = true)
@@ -34,11 +34,7 @@ public class PersonDto implements Serializable {
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date birthdate;
 
-  @ApiModelProperty(value = "List family of students", required = false)
-  private List<FamilyDto> familyList;
-
   public PersonDto() {
-    familyList = new ArrayList<>();
   }
 
   public String getId() {
@@ -89,15 +85,4 @@ public class PersonDto implements Serializable {
     this.birthdate = birthdate;
   }
 
-  public void setFamilyList(List<FamilyDto> familyList) {
-    this.familyList = familyList;
-  }
-
-  public List<FamilyDto> getFamilyList() {
-    return familyList;
-  }
-
-  public void addFamily(FamilyDto family) {
-    this.familyList.add(family);
-  }
 }
