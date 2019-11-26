@@ -41,7 +41,7 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public Mono<CourseDto> update(CourseDto course, String id) {
     return findById(id).flatMap(c -> {
-      c.setNombre(course.getNombre());
+      c.setName(course.getName());
       c.setStatus(course.getStatus());
       c.setMinimumQuota(course.getMinimumQuota());
       c.setMaximumQuota(course.getMaximumQuota());
