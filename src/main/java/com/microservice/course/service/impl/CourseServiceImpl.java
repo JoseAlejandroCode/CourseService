@@ -4,6 +4,7 @@ import com.microservice.course.component.CourseConverter;
 import com.microservice.course.model.dto.CourseDto;
 import com.microservice.course.repository.CourseRepository;
 import com.microservice.course.service.CourseService;
+import com.microservice.course.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -19,6 +20,9 @@ public class CourseServiceImpl implements CourseService {
 
   @Autowired
   private CourseConverter courseConverter;
+
+  @Autowired
+  private StudentService studentService;
 
   @Override
   public Flux<CourseDto> findAll() {
@@ -47,8 +51,17 @@ public class CourseServiceImpl implements CourseService {
       c.setMaximumQuota(course.getMaximumQuota());
       c.setStartCourse(course.getStartCourse());
       c.setEndCourse(course.getEndCourse());
+      c.setTeacher(course.getTeacher());
+      course.getStudentList().forEach(student -> c.addStudent(student));
       return courseRepository.save(courseConverter.convertToDocument(c))
-              .flatMap(cour -> Mono.just(courseConverter.convertToDto(cour)));
+              .flatMap(cour -> Mono.just(courseConverter.convertToDto(cour)))
+              .flatMap(cour -> {
+                course.getStudentList().forEach(student -> {
+                  student.addCourse(cour);
+                  cour.addStudent(studentService.updateCourseList(cour, student.getId()).block());
+                });
+                return Mono.just(cour);
+              });
     });
   }
 

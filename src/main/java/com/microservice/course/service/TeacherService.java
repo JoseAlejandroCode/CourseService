@@ -5,5 +5,6 @@ import com.microservice.course.model.dto.TeacherDto;
 import reactor.core.publisher.Mono;
 
 public interface TeacherService {
-  Mono<TeacherDto> updateCourseList(CourseDto course);
+  Mono<TeacherDto> findTeacher(String idTeacher);
+  Mono<TeacherDto> updateCourseList(CourseDto course, String idTeacher);
 }
