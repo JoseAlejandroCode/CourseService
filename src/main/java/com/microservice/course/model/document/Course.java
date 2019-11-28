@@ -33,6 +33,16 @@ public class Course {
   private List<String> studentsList;
   private List<String> familyList;
 
+  private String idInstitute;
+
+  public String getIdInstitute() {
+    return idInstitute;
+  }
+
+  public void setIdInstitute(String idInstitute) {
+    this.idInstitute = idInstitute;
+  }
+
   public Course() {
     this.studentsList = new ArrayList<>();
     this.familyList = new ArrayList<>();

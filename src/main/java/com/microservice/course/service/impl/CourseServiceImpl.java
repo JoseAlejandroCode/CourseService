@@ -71,4 +71,10 @@ public class CourseServiceImpl implements CourseService {
               .flatMap(c -> courseRepository.delete(courseConverter.convertToDocument(c)));
   }
 
+  @Override
+  public Flux<CourseDto> findByIdInstitute(String idInstitute) {
+    return courseRepository.findByIdInstitute(idInstitute)
+            .flatMap(course -> Mono.just(courseConverter.convertToDto(course)));
+  }
+
 }

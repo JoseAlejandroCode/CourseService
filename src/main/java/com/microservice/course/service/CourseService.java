@@ -12,4 +12,5 @@ public interface CourseService {
   Mono<CourseDto> create(CourseDto course);
   Mono<CourseDto> update(CourseDto course, String id);
   Mono<Void> delete(String id);
+  Flux<CourseDto> findByIdInstitute(String idInstitute);
 }

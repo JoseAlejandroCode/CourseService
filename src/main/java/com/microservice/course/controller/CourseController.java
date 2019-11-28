@@ -61,4 +61,11 @@ public class CourseController {
             .flatMap(p -> Mono.just(new ResponseEntity<Void>(HttpStatus.NO_CONTENT)));
   }
 
+  @GetMapping("/institute/{idInstitute}")
+  public Mono<ResponseEntity<Flux<CourseDto>>> findByIdInstitute(@PathVariable String idInstitute)  {
+    return Mono.just(ResponseEntity
+            .ok().contentType(MediaType.APPLICATION_JSON)
+            .body(courseService.findByIdInstitute(idInstitute)));
+  }
+
 }

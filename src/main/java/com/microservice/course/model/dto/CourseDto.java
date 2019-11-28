@@ -28,6 +28,16 @@ public class CourseDto {
   private TeacherDto teacher;
   private List<FamilyDto> familyList;
 
+  private InstituteDto institute;
+
+  public InstituteDto getInstitute() {
+    return institute;
+  }
+
+  public void setInstitute(InstituteDto institute) {
+    this.institute = institute;
+  }
+
   public CourseDto() {
     this.studentList = new ArrayList<>();
     this.familyList = new ArrayList<>();

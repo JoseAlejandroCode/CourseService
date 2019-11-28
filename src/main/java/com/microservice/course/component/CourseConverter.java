@@ -29,6 +29,7 @@ public class CourseConverter {
     course.setStartCourse(courseDto.getStartCourse());
     course.setEndCourse(courseDto.getEndCourse());
     course.setIdTeacher(courseDto.getTeacher().getId());
+    course.setIdInstitute(courseDto.getInstitute().getId());
     courseDto.getFamilyList().forEach(f -> course.addFamily(f.getId()));
     courseDto.getStudentList().forEach(s -> course.addStudent(s.getId()));
     return course;
